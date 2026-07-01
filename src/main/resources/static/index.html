@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PulseGate</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar">
+    <div>
+        <p class="eyebrow">API Reliability Dashboard</p>
+        <h1>PulseGate</h1>
+    </div>
+    <div class="topbar-actions">
+        <button id="resetButton" class="danger-light">Reset Demo Data</button>
+        <button id="refreshButton" class="secondary">Refresh</button>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div>
+            <h2>API Rate Limiter & Request Inspector</h2>
+            <p>Generate an API key, call a protected endpoint, and watch the dashboard capture status codes, latency, blocked requests, and key usage.</p>
+        </div>
+        <form id="keyForm" class="key-form">
+            <label for="ownerName">Owner name</label>
+            <div class="inline-form">
+                <input id="ownerName" name="ownerName" type="text" placeholder="Amrinder" maxlength="120" required>
+                <button type="submit">Generate Key</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="current-key">
+        <div>
+            <p class="label">Active API Key</p>
+            <code id="activeKey">No key generated yet</code>
+        </div>
+        <div class="actions">
+            <button id="callButton" class="secondary">Send 1 Request</button>
+            <button id="stressButton">Send 20-Request Burst</button>
+        </div>
+    </section>
+
+    <section class="metrics-grid">
+        <article>
+            <span>Total Requests</span>
+            <strong id="totalRequests">0</strong>
+        </article>
+        <article>
+            <span>Successful</span>
+            <strong id="successfulRequests">0</strong>
+        </article>
+        <article>
+            <span>Blocked</span>
+            <strong id="blockedRequests">0</strong>
+        </article>
+        <article>
+            <span>Errors</span>
+            <strong id="failedRequests">0</strong>
+        </article>
+        <article>
+            <span>Average Latency</span>
+            <strong id="averageLatency">0 ms</strong>
+        </article>
+        <article>
+            <span>Active Keys</span>
+            <strong id="activeApiKeys">0</strong>
+        </article>
+    </section>
+
+    <section class="split">
+        <div>
+            <div class="section-heading">
+                <h2>API Keys</h2>
+                <span id="rateStatus">Limit: 10/min</span>
+            </div>
+            <div class="table-wrap">
+                <table class="keys-table">
+                    <thead>
+                    <tr>
+                        <th>Owner</th>
+                        <th>Key</th>
+                        <th>Requests</th>
+                        <th>Used</th>
+                        <th>Left</th>
+                    </tr>
+                    </thead>
+                    <tbody id="keysBody">
+                    <tr><td colspan="5">No API keys yet.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <div class="section-heading">
+                <h2>Request Logs</h2>
+                <span id="lastResult">Ready</span>
+            </div>
+            <div class="table-wrap">
+                <table class="logs-table">
+                    <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>API Key</th>
+                        <th>Endpoint</th>
+                        <th>Status</th>
+                        <th>Latency</th>
+                        <th>Blocked</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logsBody">
+                    <tr><td colspan="6">No requests logged yet.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
